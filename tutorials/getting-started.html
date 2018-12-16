@@ -1,0 +1,462 @@
+﻿<!DOCTYPE html><html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <title>Minecraft Bedrock Add-On Tools - Getting Started</title>
+        <link href="/assets/css/mermaid.css" rel="stylesheet">
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        
+    </head>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
+                            <span>Minecraft Bedrock Add-On Tools</span>
+                </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                    </div>
+            
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/about">About This Project</a></li>
+        <li><a href="/docs">Docs</a></li>
+        <li class="active"><a href="/tutorials">Tutorials</a></li>
+        <li><a href="/blog">Blog</a></li>
+ 
+                        </ul>       
+                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#about">About</a></p>
+<p><a href="#where-to-go-for-help">Where to go for help?</a></p>
+<p><a href="#pre-requisites">Pre-requisites</a></p>
+<p><a href="#creating-your-first-addon">Creating your first Addon</a></p>
+<p><a href="#a-quick-tour-of-your-new-add-on">A quick tour of your new add-on</a></p>
+<p><a href="#running-the-add-on">Running the add-on</a></p>
+<p><a href="#modifying-the-client-script-to-test-out-scripting">Modifying the client script to test out scripting</a></p>
+<p><a href="#where-to-next">Where to Next?</a></p>
+<hr class="infobar-hidden">
+</div>
+
+                </section>
+                <section class="sidebar">    
+                                     
+                    
+
+                    <ul class="sidebar-menu">
+                        
+
+            <li class="header">Beginning</li>
+                <li class="selected"><a href="/tutorials/getting-started">Getting Started</a></li>
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+		<section class="content-header">
+			<h1>Getting Started</h1>
+		</section>
+	<section class="content">
+		<h1 id="about">About</h1>
+<p>You're about to embark on a journey of extending Minecraft to add functionality and content that the original creators had not imagined that the game would be used for.</p>
+<p>On the 24th of October, the scripting documentation was released to the public for review, and the scripting API made available to a small focus group to test it out (versions 1.8.0.50 and 1.8.0.51), then on the 5th of December, the API was given to the public beta community.</p>
+<p>It is now possible for anybody to participate in the beta and write your own scripts for minecraft, and this tutorial series is here to help get you started.</p>
+<h1 id="where-to-go-for-help">Where to go for help?</h1>
+<p>We are currently setting up a Discord server which will provide the recommended source for help in the future. In the short term, you may ask me questions on twitter (<a href="http://twitter.com/AtomicBlom">AtomicBlom</a>), PM me for help in discord (AtomicBlom#3671), or open an issue on <a href="https://github.com/minecraft-addon-tools/minecraft-addon-tools.github.io/issues">GitHub</a>. I will answer as I have time.</p>
+<h1 id="pre-requisites">Pre-requisites</h1>
+<p>In order to develop a script addon, you will need a number of things. At <a href="http://github.com/minecraft-addon-tools/">minecraft-addon-tools</a>, we provide additional tools to make it easier to make it easier and faster to make your addon.</p>
+<p>The bare minimum you will need are the Mojang recommended requirements:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Software</th>
+<th>Minimum</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code Editor</td>
+<td><a href="https://code.visualstudio.com/">Visual Studio Code</a> or any plain-text editor</td>
+<td><a href="https://visualstudio.microsoft.com/vs/">Visual Studio Community 2017</a> with the following components installed: 'JavaScript diagnostics', 'JavaScript and TypeScript language support', 'Just-In-Time debugger'</td>
+</tr>
+<tr>
+<td>Debugger</td>
+<td>N/A</td>
+<td>Visual Studio Community 2017</td>
+</tr>
+<tr>
+<td>Minecraft</td>
+<td><a href="https://www.microsoft.com/en-us/p/minecraft-for-windows-10/9nblggh2jhxj">Minecraft on your Windows 10 device</a></td>
+<td><a href="https://www.microsoft.com/en-us/p/minecraft-for-windows-10/9nblggh2jhxj">Minecraft on your Windows 10 device</a></td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Vanilla Behavior Pack available from <a href="https://aka.ms/MinecraftBetaBehaviors">https://aka.ms/MinecraftBetaBehaviors</a></td>
+<td>Vanilla Behavior Pack available from <a href="https://aka.ms/MinecraftBetaBehaviors">https://aka.ms/MinecraftBetaBehaviors</a></td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>1.0 GB of free space for text editor, game, and scripts</td>
+<td>3.0 GB of free space for Visual Studio, game, and scripts</td>
+</tr>
+</tbody>
+</table>
+<p>To use the additional tools we provide, you will need some additional dependencies</p>
+<table class="table">
+<thead>
+<tr>
+<th>Software</th>
+<th>Minimum</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node JS</td>
+<td>10.14.2</td>
+<td>The most recent 10.x release</td>
+</tr>
+</tbody>
+</table>
+<p>It's highly recommended that when you install Node JS, you leave the option "Add to PATH" selected.</p>
+<p>As of the time of writing, the scripting API is in public Beta. That means that you will need to follow the Mojang guide to get signed up for the public beta.</p>
+<p><a href="https://minecraft.net/en-us/article/how-get-minecraft-betas">https://minecraft.net/en-us/article/how-get-minecraft-betas</a></p>
+<h1 id="creating-your-first-addon">Creating your first Addon</h1>
+<p>Now that you have all the tools installed, it's time to create your first addon.</p>
+<p>To get started quickly, we'll be using <a href="https://github.com/minecraft-addon-tools/generator-minecraft-addon">generator-minecraft-addon</a>, which is a generator for <a href="http://yeoman.io">yeoman</a>, which itself is a tool made for quickly putting together a project.</p>
+<p>Start by installing both of these tools globally.</p>
+<pre><code class="language-powershell"># install yeoman
+npm install --global yo
+# install the minecraft addon generator
+npm install --global generator-minecraft-addon
+</code></pre>
+<p>With these installed, we'll need a directory on your computer to develop your code in, so create a directory and enter it, for the sake of this tutorial, we'll be using <code>C:\Dev\Minecraft</code></p>
+<pre><code class="language-powershell">mkdir \Dev\Minecraft
+cd \Dev\Minecraft
+</code></pre>
+<p>Now we can create our addon. <code>generator-minecraft-addon</code> will ask you a number of questions about your addon and how you wish to develop it, this information will be used to both structure the addon directories and create the various files that Minecraft will use to identify the addon.</p>
+<pre><code class="language-powershell">yo minecraft-addon
+</code></pre>
+<table class="table">
+<thead>
+<tr>
+<th>Prompt</th>
+<th>Description</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>What will be the name of your addon?</code></td>
+<td>This will be the name displayed in Minecraft when players select your add-on</td>
+<td><code>Getting Started</code></td>
+</tr>
+<tr>
+<td><code>What will your addon do or provide?</code></td>
+<td>This will be the description displayed in Minecraft when the player selects your add-on</td>
+<td><code>Demonstrate a very basic Minecraft Add-on</code></td>
+</tr>
+<tr>
+<td><code>What namespace will you use?</code></td>
+<td>The namespace helps to separate your add-on's functionality from other addons so they do not collide</td>
+<td><code>gettingstarted</code></td>
+</tr>
+<tr>
+<td><code>What kind of modules will make up the addon? (Behaviors, Resources)</code></td>
+<td>This warrants a full explanation, see directly below</td>
+<td><code>Behaviors</code></td>
+</tr>
+<tr>
+<td><code>Will you be adding scripts?</code></td>
+<td>It's possible to create an addon that does not use scripts, however we will be using scripts for this series.</td>
+<td><code>Yes</code></td>
+</tr>
+<tr>
+<td><code>What language do you want to script in?</code></td>
+<td>This warrants a full explanation, see directly below</td>
+<td><code>JavaScript</code></td>
+</tr>
+</tbody>
+</table>
+<p>An example of the output should look like this:
+<img src="/assets/Tutorials/GettingStarted_ExampleGeneratorOutput.png" class="img-fluid" alt="Example output"></p>
+<h2 id="behaviors-and-resources">Behaviors and Resources</h2>
+<p>Minecraft addons are made up of two main concepts:</p>
+<ul>
+<li><strong>Behavior packs</strong> which modify the way the game behaves.</li>
+<li><strong>Resource packs</strong> which modify the how the game looks.</li>
+</ul>
+<p>Both types of pack can modify existing (vanilla) content, or add new content in addition to the existing content.</p>
+<p>For the sake of this first tutorial, we do not need to change the looks, we simply want to test out and make sure that you are configured to run a script.</p>
+<p><em>The use of the term <code>behavior</code> follows US spelling, in order to save on confusion it will always be referred to in the same spelling as in the official documentation in order to avoid something breaking because of the spelling being wrong</em></p>
+<h2 id="scripting-languages">Scripting Languages</h2>
+<p>When setting up your addon, you will have been presented with at least two options, JavaScript and TypeScript.</p>
+<p>JavaScript is the add-on scripting language. It is a very widely used language, most commonly used in your web browser. It has been around in various forms since May 1995, with many new revisions and additions made to the language in the years since. At the time of writing, Minecraft supports the features that were introduced in EcmaScript 5.1 (EcmaScript being the specification for JavaScript versions).</p>
+<p>Despite it's ubiquity, it does have a reputation in some circles for being very easy to write code that is buggy or doesn't work at all. To help with that,
+<a href="http://github.com/minecraft-addon-tools/">minecraft-addon-tools</a> provides definitions for a language called TypeScript. The best description I've read about can be found on Stack Overflow (<a href="https://stackoverflow.com/questions/12694530/what-is-typescript-and-why-would-i-use-it-in-place-of-javascript/35048303#35048303">What is TypeScript and why would I use it in place of JavaScript</a>): <code>TypeScript is modern JavaScript + types. It's about catching bugs early and making you a more efficient developer, while at the same time leveraging the JavaScript community.</code></p>
+<p>TypeScript is converted into JavaScript, and although it helps to write less buggy code, it does add an additional layer of complexity that I would like to avoid for these tutorials.</p>
+<p>You can expect that resources from Mojang and other places around the community will be written in JavaScript.</p>
+<h1 id="a-quick-tour-of-your-new-add-on">A quick tour of your new add-on</h1>
+<p>Now that your addon has been created, Open your IDE in the newly created directory <code>C:\Dev\Minecraft\GettingStarted</code></p>
+<p>The project has been layed out according to the expected layout of the <a href="https://github.com/minecraft-addon-tools/minecraft-scripting-toolchain">minecraft-scripting-toolchain</a> package that we provide.</p>
+<p>The toolchain provides the following features:</p>
+<ul>
+<li>Adds support for languages other than JavaScript</li>
+<li>Creates a directory in the <code>.mcaddon</code> format.</li>
+<li>Installs the mod into Minecraft</li>
+<li>Watches for changes to files and automatically updates.</li>
+</ul>
+<p>We'll use the toolchain in a moment, but first let's look at each file and directory in the project and what it's for.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>node_modules/</td>
+<td>This is where <code>minecraft-scripting-toolchain</code> and it's dependencies live.</td>
+</tr>
+<tr>
+<td>src/</td>
+<td>The files that make up your addon will be somewhere under this directory.</td>
+</tr>
+<tr>
+<td>src/behaviors/</td>
+<td>This is where the files that make up the behavior pack will live. This does not include scripts, they are currently stored separately</td>
+</tr>
+<tr>
+<td>src/behaviors/manifest.json</td>
+<td>This file is used by Minecraft to identify the behavior pack for your add-on, It provides the name and description for users to see</td>
+</tr>
+<tr>
+<td>src/behaviors/pack_icon.png</td>
+<td>This icon is used to identify your addon. You should change this as soon as possible</td>
+</tr>
+<tr>
+<td>src/scripts/client/</td>
+<td>This is where scripts that need to run on your computer will live.</td>
+</tr>
+<tr>
+<td>src/scripts/client/client.js</td>
+<td>This is the example client side script. It has some basic code, but does not do anything.</td>
+</tr>
+<tr>
+<td>src/scripts/server/</td>
+<td>Most of the game logic happens on the server, which could be your computer, a friend's computer or a dedicated server, and this is where those server-side scripts will live.</td>
+</tr>
+<tr>
+<td>src/scripts/server/server.js</td>
+<td>This is the example server side script. It has some basic code, but does not do anything.</td>
+</tr>
+<tr>
+<td>gulpfile.js</td>
+<td>This file is part of the <code>minecraft-scripting-toolchain</code>, which is built on top of a system called <code>gulp</code>. It is highly configurable, but the version that is provided by <code>generator-minecraft-addon</code> starts off very basic.</td>
+</tr>
+<tr>
+<td>package-lock.js</td>
+<td>This is used by <code>npm</code>, part of Node JS to keep track of <code>minecraft-scripting-toolchain</code>'s version and dependencies.</td>
+</tr>
+<tr>
+<td>package.js</td>
+<td>This is used by <code>npm</code>, part of Node JS to define what version of <code>minecraft-scripting-toolchain</code> and the commands you can run that make development of your addon easier.</td>
+</tr>
+</tbody>
+</table>
+<p>If we had created the addon with resources, there would have been three additional entries.
+| Path          | Purpose |
+| ----          | ------- |
+| src/resources/ | This is where the files that make up the resource pack will live. |
+| src/resources/manifest.json | This file is used by Minecraft to identify the resource pack for your add-on, It provides the name and description for users to see |
+| src/resources/pack_icon.png | This is the same icon that is used in your behavior, and should also be changed as soon as possible |</p>
+<p>Now that we've explored the files, let's try installing it into minecraft and we'll make sure that everything is running okay.</p>
+<h1 id="running-the-add-on">Running the add-on</h1>
+<p>Start by making sure you have a command prompt open, and in the directory of your mod. (If you've been following this tutorial exactly, it will be in <code>C:\Dev\Minecraft\GettingStarted</code>)</p>
+<p>The simplest way to get your mod into minecraft is to run</p>
+<pre><code class="language-powershell">npm run installmod
+</code></pre>
+<p>The output should look similar to the following:</p>
+<p><img src="/assets/Tutorials/GettingStarted_InstallModOutput.png" class="img-fluid" alt="installmod output"></p>
+<p>With that complete, we can now load Minecraft and test it out, here's the steps:</p>
+<ol>
+<li>Launch Minecraft</li>
+<li>Select <code>Play</code></li>
+<li>Under <code>Worlds</code>, Select <code>Create New</code></li>
+<li>Select <code>Create new World</code></li>
+<li>On the Left-hand side of the screen, under <code>Add-Ons</code>, select <code>Behavior Packs</code>
+<ul>
+<li>You should see "Getting started" as an option.</li>
+</ul>
+</li>
+<li>Click on "Getting Started"</li>
+<li>Select the <code>+</code> button to add it to your world.</li>
+<li>You will be prompted to disable achievements which you must accept.</li>
+<li>On the Left-hand side of the screen, under <code>Edit Settings</code>, select <code>Game</code></li>
+<li>Scroll down and turn on <code>Use Experimental Gameplay</code></li>
+<li>confirm you wish to change this setting.</li>
+<li>Give your world a name if you wish</li>
+<li>Press the <code>Create</code> button to enter the world.</li>
+</ol>
+<p>Because we are running with features that are not available to the general public, we need to enable experimental mode.</p>
+<p>When the scripting API is released to the public, this will not be necessary.</p>
+<p>If all goes well, you will be presented with a warning to enable scripts. This is an indication that Minecraft has found the scripts and is about to load them.</p>
+<p><img src="/assets/Tutorials/GettingStarted_ScriptsFound.png" class="img-fluid" alt="Scripts found"></p>
+<p>Hit the <code>Enter World</code> button and... you'll be in the world, but nothing exciting will have happened.</p>
+<h1 id="modifying-the-client-script-to-test-out-scripting">Modifying the client script to test out scripting</h1>
+<h2 id="introduction-to-the-client.js-script">Introduction to the client.js script</h2>
+<p>Ok, we have an indication that scripts are running, but how can we prove it to ourselves?</p>
+<p>First, in your IDE, open client.js, the current code should look like this:</p>
+<pre><code class="language-javascript">var clientSystem = client.registerSystem(0, 0);
+
+// Setup which events to listen for
+clientSystem.initialize = function () {
+    // set up your listenToEvents and register client-side components here.
+}
+
+// per-tick updates
+clientSystem.update = function() {
+    // Any logic that needs to happen every tick on the client.
+}
+</code></pre>
+<p>There's not a lot going on in this file. Everything starting with <code>//</code> is a comment and simply serves to describe what is going on.</p>
+<p>The first line registers a new system with the Minecraft Client. <code>client</code> is a global variable provided by Minecraft and only has a couple of functions we can call.</p>
+<p><code>registerSystem</code> asks Minecraft to provide a system with the specified API version <code>0, 0</code>. This provides backwards compatibility so that your addon is more likely to run on newer versions of Minecraft without any changes.</p>
+<p>The object it returns, the system, is tied to the Minecraft client itself and provides a number of functions you can call on it to interact with Minecraft. It also provides a number of extension points that Minecraft will automatically call if you define. Two of them are pre-defined for you: <code>initialize</code>, and <code>update</code>.</p>
+<p><code>initialize</code> is called only once when Minecraft has finished loading everything it needs to before it can start running script code.</p>
+<p><code>update</code> is called every game tick. A game tick is one cycle of the game logic, which happens twenty times per second.</p>
+<h2 id="automatically-updating-the-code">Automatically updating the code</h2>
+<p>Let's run the <code>minecraft-scripting-toolchain</code> in watch mode make it easier to update our code in Minecraft so we don't have to run <code>npm run installmod</code> every time we want to test something.</p>
+<p>In your console terminal, run</p>
+<pre><code class="language-powershell">npm run watch
+</code></pre>
+<p>It should follow the same steps as <code>npm run installmod</code>, however it doesn't exit. It hangs on 'watchFiles' and doesn't exit.</p>
+<p>The toolchain is now watching for changes you make, and will automatically build the add-on, and install it into Minecraft every time you save a file. It will then resume watching for more changes.</p>
+<p><img src="/assets/Tutorials/GettingStarted_Watch.png" class="img-fluid" alt="watch output"></p>
+<p>You can now leave your command line in the background and it will update as necessary.</p>
+<h2 id="hello-world">Hello World</h2>
+<p>For this tutorial, let's greet ourselves when we enter the game. We can do this by broadcasting an event to Minecraft, and this will be covered in much greater detail in the second tutorial, but for now, let's update the <code>initialize</code> function and call into minecraft with the <code>minecraft:display_chat_event</code> event and a message to get it to display a message in the chat log when the world is loaded.</p>
+<pre><code class="language-javascript">// Setup which events to listen for
+clientSystem.initialize = function () {
+    // set up your listenToEvents and register client-side components here.
+    clientSystem.broadcastEvent("minecraft:display_chat_event", "Hello World!");
+}
+</code></pre>
+<p>When you save the file, <code>npm run watch</code> should have detected the change, built the addon and installed it into Minecraft. Unfortunately Minecraft does not have a way to reload scripts, you will need to exit out of the world (not the game, just the world) and enter the world again.</p>
+<p>Once you've done this though, you should be able to open the chat log (<code>t</code> by default), and it should have a message for you:</p>
+<p><img src="/assets/Tutorials/GettingStarted_DisplayChatEventResult.png" class="img-fluid" alt="watch output"></p>
+<h1 id="where-to-next">Where to Next?</h1>
+<p>Congratulations! If you've made it this far, you have completed the basics of getting up and running to know the tools that will help you build your Add-ons.</p>
+<p>Next we'll take a short look at events and the client/server communications.</p>
+
+	</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
+        </div>
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
+                Generated by <a href="https://wyam.io">Wyam</a>
+            </footer>
+        </div>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
+            $(document).load(function() {
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        htmlLabels: false,
+                        useMaxWidth:false
+                    }
+                });  
+                mermaid.init(undefined, ".mermaid")
+                $('svg').addClass('img-responsive');
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
+            });
+        </script>
+    
+</body></html>
