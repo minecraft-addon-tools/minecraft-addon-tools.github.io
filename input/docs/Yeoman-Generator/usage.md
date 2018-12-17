@@ -1,7 +1,7 @@
 Description: The Yeoman Generator for creating Minecraft Addons.
 ---
 # generator-minecraft-addon
-[![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url]
+[![NPM version][npm-image]][npm-url]
 
 > Generate minecraft bedrock edition addons
 
@@ -27,7 +27,4 @@ MIT © [Steven Blom](http://github.com/AtomicBlom)
 
 [npm-image]: https://badge.fury.io/js/generator-minecraft-addon.svg
 [npm-url]: https://npmjs.org/package/generator-minecraft-addon
-[travis-image]: https://travis-ci.org/minecraft-scripting-tools/generator-minecraft-addon.svg?branch=master
-[travis-url]: https://travis-ci.org/minecraft-scripting-tools/generator-minecraft-addon
-[daviddm-image]: https://david-dm.org/minecraft-scripting-tools/generator-minecraft-addon.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/minecraft-scripting-tools/generator-minecraft-addon
+
