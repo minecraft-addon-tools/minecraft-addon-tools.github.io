@@ -5,16 +5,16 @@
 		<link>http://minecraft-addon-tools.github.io/</link>
 		<description />
 		<copyright>2018</copyright>
-		<pubDate>Sun, 16 Dec 2018 14:29:24 GMT</pubDate>
-		<lastBuildDate>Sun, 16 Dec 2018 14:29:24 GMT</lastBuildDate>
+		<pubDate>Mon, 17 Dec 2018 05:58:11 GMT</pubDate>
+		<lastBuildDate>Mon, 17 Dec 2018 05:58:11 GMT</lastBuildDate>
 		<item>
-			<title>New Release</title>
-			<link>http://minecraft-addon-tools.github.io/blog/new-release</link>
-			<description>&lt;p&gt;There is a new release out, go get it now.&lt;/p&gt;</description>
-			<author>me</author>
-			<guid>http://minecraft-addon-tools.github.io/blog/new-release</guid>
-			<pubDate>Fri, 01 Jan 2016 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;There is a new release out, go get it now.&lt;/p&gt;
+			<title>First Tutorial Avaiable</title>
+			<link>http://minecraft-addon-tools.github.io/blog/first-tutorial-available</link>
+			<description>&lt;p&gt;The first tutorial for Bedrock Scripting is available.&lt;/p&gt;</description>
+			<author>Steven Blom</author>
+			<guid>http://minecraft-addon-tools.github.io/blog/first-tutorial-available</guid>
+			<pubDate>Mon, 17 Dec 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;The first tutorial for Bedrock Scripting is available.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>

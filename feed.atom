@@ -4,17 +4,17 @@
 	<id>http://minecraft-addon-tools.github.io/</id>
 	<title>Minecraft Bedrock Add-On Tools</title>
 	<rights>2018</rights>
-	<updated>2018-12-16T14:29:24Z</updated>
+	<updated>2018-12-17T05:58:11Z</updated>
 	<entry>
 		<author>
-			<name>me</name>
+			<name>Steven Blom</name>
 		</author>
-		<link href="http://minecraft-addon-tools.github.io/blog/new-release" />
-		<id>http://minecraft-addon-tools.github.io/blog/new-release</id>
-		<title>New Release</title>
-		<updated>2016-01-01T00:00:00Z</updated>
-		<content>&lt;p&gt;There is a new release out, go get it now.&lt;/p&gt;
+		<link href="http://minecraft-addon-tools.github.io/blog/first-tutorial-available" />
+		<id>http://minecraft-addon-tools.github.io/blog/first-tutorial-available</id>
+		<title>First Tutorial Avaiable</title>
+		<updated>2018-12-17T00:00:00Z</updated>
+		<content>&lt;p&gt;The first tutorial for Bedrock Scripting is available.&lt;/p&gt;
 </content>
-		<summary>&lt;p&gt;There is a new release out, go get it now.&lt;/p&gt;</summary>
+		<summary>&lt;p&gt;The first tutorial for Bedrock Scripting is available.&lt;/p&gt;</summary>
 	</entry>
 </feed>
