@@ -2,6 +2,6 @@
 
 // Customize your settings and add new ones here
 Settings[Keys.Host] = "minecraft-addon-tools.github.io";
-Settings[DocsKeys.Title] = "Minecraft Bedrock Add-On Tools";
+Settings[DocsKeys.Title] = "Bedrock Add-On Tools";
 
 // Add any pipeline customizations here
