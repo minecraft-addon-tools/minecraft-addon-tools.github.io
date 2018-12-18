@@ -25,19 +25,19 @@ In order to develop a script addon, you will need a number of things. At [minecr
 
 The bare minimum you will need are the Mojang recommended requirements:
 
-| Software    | Minimum                                     | Recommended |
-| ----------- | ------------------------------------------- | ----------- |
-| Code Editor | [Visual Studio Code](https://code.visualstudio.com/) or any plain-text editor | [Visual Studio Community 2017](https://visualstudio.microsoft.com/vs/) with the following components installed: 'JavaScript diagnostics', 'JavaScript and TypeScript language support', 'Just-In-Time debugger' |
-| Debugger | N/A | Visual Studio Community 2017 |
-| Minecraft | [Minecraft on your Windows 10 device](https://www.microsoft.com/en-us/p/minecraft-for-windows-10/9nblggh2jhxj) | [Minecraft on your Windows 10 device](https://www.microsoft.com/en-us/p/minecraft-for-windows-10/9nblggh2jhxj) |
-| Other | Vanilla Behavior Pack available from https://aka.ms/MinecraftBetaBehaviors | Vanilla Behavior Pack available from https://aka.ms/MinecraftBetaBehaviors
-| Storage | 1.0 GB of free space for text editor, game, and scripts | 3.0 GB of free space for Visual Studio, game, and scripts |
+| Software    | Minimum                                                                                                        | Recommended                                                                                                                                                                                                     |
+|-------------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Code Editor | [Visual Studio Code](https://code.visualstudio.com/) or any plain-text editor                                  | [Visual Studio Community 2017](https://visualstudio.microsoft.com/vs/) with the following components installed: 'JavaScript diagnostics', 'JavaScript and TypeScript language support', 'Just-In-Time debugger' |
+| Debugger    | N/A                                                                                                            | Visual Studio Community 2017                                                                                                                                                                                    |
+| Minecraft   | [Minecraft on your Windows 10 device](https://www.microsoft.com/en-us/p/minecraft-for-windows-10/9nblggh2jhxj) | [Minecraft on your Windows 10 device](https://www.microsoft.com/en-us/p/minecraft-for-windows-10/9nblggh2jhxj)                                                                                                  |
+| Other       | Vanilla Behavior Pack available from https://aka.ms/MinecraftBetaBehaviors                                     | Vanilla Behavior Pack available from https://aka.ms/MinecraftBetaBehaviors                                                                                                                                      |
+| Storage     | 1.0 GB of free space for text editor, game, and scripts                                                        | 3.0 GB of free space for Visual Studio, game, and scripts                                                                                                                                                       |
 
 To use the additional tools we provide, you will need some additional dependencies
 
-| Software    | Minimum                                     | Recommended                  |
-| ----------- | ------------------------------------------- | ---------------------------- |
-| Node JS     | 10.14.2                                     | The most recent 10.x release |
+| Software | Minimum | Recommended                  |
+|----------|---------|------------------------------|
+| Node JS  | 10.14.2 | The most recent 10.x release |
 
 It's highly recommended that when you install Node JS, you leave the option "Add to PATH" selected.
 
@@ -72,14 +72,14 @@ Now we can create our addon. `generator-minecraft-addon` will ask you a number o
 ```powershell
 yo minecraft-addon
 ```
-| Prompt | Description | Answer |
-| ------ | ----------- | ------ |
-| `What will be the name of your addon?` | This will be the name displayed in Minecraft when players select your add-on | `Getting Started` |
-| `What will your addon do or provide?`  | This will be the description displayed in Minecraft when the player selects your add-on | `Demonstrate a very basic Minecraft Add-on` |
-| `What namespace will you use?` | The namespace helps to separate your add-on's functionality from other addons so they do not collide | `gettingstarted` |
-| `What kind of modules will make up the addon? (Behaviors, Resources)` | This warrants a full explanation, see directly below | `Behaviors` |
-| `Will you be adding scripts?` | It's possible to create an addon that does not use scripts, however we will be using scripts for this series. | `Yes` |
-| `What language do you want to script in?` | This warrants a full explanation, see directly below | `JavaScript` |
+| Prompt                                                                | Description                                                                                                   | Answer                                      |
+|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|---------------------------------------------|
+| `What will be the name of your addon?`                                | This will be the name displayed in Minecraft when players select your add-on                                  | `Getting Started`                           |
+| `What will your addon do or provide?`                                 | This will be the description displayed in Minecraft when the player selects your add-on                       | `Demonstrate a very basic Minecraft Add-on` |
+| `What namespace will you use?`                                        | The namespace helps to separate your add-on's functionality from other addons so they do not collide          | `gettingstarted`                            |
+| `What kind of modules will make up the addon? (Behaviors, Resources)` | This warrants a full explanation, see directly below                                                          | `Behaviors`                                 |
+| `Will you be adding scripts?`                                         | It's possible to create an addon that does not use scripts, however we will be using scripts for this series. | `Yes`                                       |
+| `What language do you want to script in?`                             | This warrants a full explanation, see directly below                                                          | `JavaScript`                                |
 
 An example of the output should look like this:
 ![Example output](/assets/Tutorials/GettingStarted_ExampleGeneratorOutput.png)
@@ -123,27 +123,28 @@ The toolchain provides the following features:
 
 We'll use the toolchain in a moment, but first let's look at each file and directory in the project and what it's for.
 
-| Path          | Purpose |
-| ----          | ------- |
-| node_modules/ | This is where `minecraft-scripting-toolchain` and it's dependencies live. |
-| src/  | The files that make up your addon will be somewhere under this directory. |
-| src/behaviors/ | This is where the files that make up the behavior pack will live. This does not include scripts, they are currently stored separately |
-| src/behaviors/manifest.json | This file is used by Minecraft to identify the behavior pack for your add-on, It provides the name and description for users to see |
-| src/behaviors/pack_icon.png | This icon is used to identify your addon. You should change this as soon as possible |
-| src/scripts/client/ | This is where scripts that need to run on your computer will live. |
-| src/scripts/client/client.js | This is the example client side script. It has some basic code, but does not do anything. |
-| src/scripts/server/ | Most of the game logic happens on the server, which could be your computer, a friend's computer or a dedicated server, and this is where those server-side scripts will live. |
-| src/scripts/server/server.js | This is the example server side script. It has some basic code, but does not do anything. |
-| gulpfile.js | This file is part of the `minecraft-scripting-toolchain`, which is built on top of a system called `gulp`. It is highly configurable, but the version that is provided by `generator-minecraft-addon` starts off very basic. |
-| package-lock.js | This is used by `npm`, part of Node JS to keep track of `minecraft-scripting-toolchain`'s version and dependencies. |
-| package.js | This is used by `npm`, part of Node JS to define what version of `minecraft-scripting-toolchain` and the commands you can run that make development of your addon easier. |
+| Path                         | Purpose                                                                                                                                                                                                                      |
+|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| node_modules/                | This is where `minecraft-scripting-toolchain` and it's dependencies live.                                                                                                                                                    |
+| src/                         | The files that make up your addon will be somewhere under this directory.                                                                                                                                                    |
+| src/behaviors/               | This is where the files that make up the behavior pack will live. This does not include scripts, they are currently stored separately                                                                                        |
+| src/behaviors/manifest.json  | This file is used by Minecraft to identify the behavior pack for your add-on, It provides the name and description for users to see                                                                                          |
+| src/behaviors/pack_icon.png  | This icon is used to identify your addon. You should change this as soon as possible                                                                                                                                         |
+| src/scripts/client/          | This is where scripts that need to run on your computer will live.                                                                                                                                                           |
+| src/scripts/client/client.js | This is the example client side script. It has some basic code, but does not do anything.                                                                                                                                    |
+| src/scripts/server/          | Most of the game logic happens on the server, which could be your computer, a friend's computer or a dedicated server, and this is where those server-side scripts will live.                                                |
+| src/scripts/server/server.js | This is the example server side script. It has some basic code, but does not do anything.                                                                                                                                    |
+| gulpfile.js                  | This file is part of the `minecraft-scripting-toolchain`, which is built on top of a system called `gulp`. It is highly configurable, but the version that is provided by `generator-minecraft-addon` starts off very basic. |
+| package-lock.js              | This is used by `npm`, part of Node JS to keep track of `minecraft-scripting-toolchain`'s version and dependencies.                                                                                                          |
+| package.js                   | This is used by `npm`, part of Node JS to define what version of `minecraft-scripting-toolchain` and the commands you can run that make development of your addon easier.                                                    |
 
 If we had created the addon with resources, there would have been three additional entries.
-| Path          | Purpose |
-| ----          | ------- |
-| src/resources/ | This is where the files that make up the resource pack will live. |
+
+| Path                        | Purpose                                                                                                                             |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| src/resources/              | This is where the files that make up the resource pack will live.                                                                   |
 | src/resources/manifest.json | This file is used by Minecraft to identify the resource pack for your add-on, It provides the name and description for users to see |
-| src/resources/pack_icon.png | This is the same icon that is used in your behavior, and should also be changed as soon as possible |
+| src/resources/pack_icon.png | This is the same icon that is used in your behavior, and should also be changed as soon as possible                                 |
 
 Now that we've explored the files, let's try installing it into minecraft and we'll make sure that everything is running okay.
 
