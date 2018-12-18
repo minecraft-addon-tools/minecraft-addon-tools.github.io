@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
 	<channel>
-		<title>Minecraft Bedrock Add-On Tools</title>
+		<title>Bedrock Add-On Tools</title>
 		<link>http://minecraft-addon-tools.github.io/</link>
 		<description />
 		<copyright>2018</copyright>
-		<pubDate>Tue, 18 Dec 2018 00:22:48 GMT</pubDate>
-		<lastBuildDate>Tue, 18 Dec 2018 00:22:48 GMT</lastBuildDate>
+		<pubDate>Tue, 18 Dec 2018 14:05:40 GMT</pubDate>
+		<lastBuildDate>Tue, 18 Dec 2018 14:05:40 GMT</lastBuildDate>
 		<item>
 			<title>First Tutorial Avaiable</title>
 			<link>http://minecraft-addon-tools.github.io/blog/first-tutorial-available</link>

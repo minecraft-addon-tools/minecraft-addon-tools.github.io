@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>http://minecraft-addon-tools.github.io/</id>
-	<title>Minecraft Bedrock Add-On Tools</title>
+	<title>Bedrock Add-On Tools</title>
 	<link rel="self" href="http://minecraft-addon-tools.github.io/" />
 	<rights>2018</rights>
-	<updated>2018-12-18T00:22:48Z</updated>
+	<updated>2018-12-18T14:05:40Z</updated>
 	<entry>
 		<id>http://minecraft-addon-tools.github.io/blog/first-tutorial-available</id>
 		<title>First Tutorial Avaiable</title>
