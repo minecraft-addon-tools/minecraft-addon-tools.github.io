@@ -1,3 +1,7 @@
+Title: Upgrading from minecraft-scripting-toolchain to minecraft-addon-toolchain v1
+Published: 2019/01/29
+Category: Toolchain
+Author: Steven Blom
 
 # Justification for change
 
@@ -12,8 +16,10 @@ the capabilities of Minecraft's Addon System, as such it was worth making note o
 # Benefits
 The toolchain was extended and changed to fix these issues.
 
-* The focus is now on multiple packs as part of a larger addon.
+* The focus is now on multiple packs as part of a larger addon. 
 * The name of the package has changed from `minecraft-scripting-toolchain` to `minecraft-addon-toolchain`
+* The toolchain attempts to handle MacOS X, Linux and Android as additional platforms.
+* The toolchain can now create .mcpack and .mcaddon files
 * Source code is now contained together with the pack it will be distributed with, in a logical layout consistent with the pack.
 * The toolchain now supports a rudimentary plugin architecture.
 * Three plugins have been written, each with their own NPM package.
@@ -73,6 +79,123 @@ builder.addPlugin(new TypeScriptSupport());
 builder.addPlugin(new BrowserifySupport());
 
 module.exports = builder.configureEverythingForMe();
+```
+
+# Plugins
+If you need to extend the toolchain beyond what it provides by default (for example, to use webpack instead of browserify), you should implement a plugin.
+
+Provided here is the description of a plugin
+```TypeScript
+interface IPlugin {
+    //Use a property setter to verify version, etc.
+    browser: MinecraftAddonBuilder;
+
+    // Runs when the source code is being transformed and copied.
+    sourceTasks?: ITask[];
+    // Runs when behaviour packs are being installed into the Minecraft development_behavior_packs directory
+    installBehaviorTasks?: ITask[];
+    // Runs when behaviour packs are being installed into the Minecraft development_resource_packs directory
+    installResourceTasks?: ITask[];
+    // Runs when .mcpack files are being generated
+    createMCPackTasks?: ITask[];
+    // Runs when the .mcaddon file is being generated
+    createMCAddOnTasks?: ITask[];
+    // Allows you to modify and extend the gulp tasks before the main tasks that can be executed are constructed
+    addDefaultTasks?: (gulpTasks: any) => void;
+}
+
+interface ITask {
+    // a file match using the normal globbing format, for example, matching all files would be "**/*"
+    condition: string | RegExp;
+    // prevents a matched file from being written to the bundled directory, useful for redirecting files for intermediate processing.
+    preventDefault?: boolean;
+    // a factory method that returns a step to be executed in a gulp pipeline stream. 
+    task: () => NodeJS.ReadWriteStream
+}
+```
+
+One change between the older system and the new one is that there is no separate build step for .js files, (or whatever you changed the source file specification to be.)
+Instead, all files in a pack are run through the same pipeline, and are transformed if they meet the condition of a task.
+
+Here is an example of a v0 `minecraft-scripting-toolchain` extension.
+
+```JavaScript
+const compiler = require("webpack")
+const webpack = require("webpack-stream")
+const ModBuilder = require("minecraft-scripting-toolchain")
+
+let builder = new ModBuilder("<youraddonname>");
+
+builder.scriptTasks = [
+  () => webpack({
+    mode: 'production',
+    entry: {
+      client: './src/scripts/client/client.js',
+      server: './src/scripts/server/server.js'
+    },
+    output: {
+      filename: '[name]/[name].js'
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        }
+      ]
+    }
+  })
+]
+
+module.exports = builder.configureEverythingForMe();
+```
+
+The equivalent as a plugin would be:
+
+```JavaScript
+const compiler = require("webpack")
+const webpack = require("webpack-stream")
+const MinecraftAddonBuilder = require("minecraft-addon-toolchain/v1");
+
+const builder = new MinecraftAddonBuilder("<youraddonname>");
+builder.addPlugin({
+    sourceTasks: [
+        {
+            condition: "**/*.js",
+            task: () => webpack({
+                mode: 'production',
+                entry: {
+                    client: './src/scripts/client/client.js',
+                    server: './src/scripts/server/server.js'
+                },
+                output: {
+                    filename: '[name]/[name].js'
+                },
+                module: {
+                rules: [
+                    {
+                        test: /\.js$/,
+                        use: {
+                            loader: 'babel-loader',
+                            options: {
+                            presets: ['@babel/preset-env']
+                            }
+                        }
+                    }
+                ]
+                }
+            })
+        }
+    ]
+})
+
+module.exports = builder.configureEverythingForMe();
+
 ```
 
 # Final Changes
