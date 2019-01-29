@@ -577,25 +577,29 @@ code a {
 /* Mermaid */
 
 .mermaid {
-  overflow: hidden;
-  visibility: hidden;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  min-height: 200px;
 }
 .mermaid[data-processed="true"] {
-  visibility: visible;
+  visibility: visible !important;
+}
+.mermaid svg {
+  min-height: 200px;
 }
 .node rect,
 .node circle,
 .node ellipse,
 .node polygon {
-  fill: #faf8f6;
-  stroke: #000;
+  fill: #faf8f6 !important;
+  stroke: #000 !important;
 }
 .type-node rect,
 .type-node circle,
 .type-node ellipse,
 .type-node polygon {
-  fill: #d7c2b3;
-  stroke: #000;
+  fill: #d7c2b3 !important;
+  stroke: #000 !important;
 }
 .cluster rect {
   fill: #f3f3f3 !important;
