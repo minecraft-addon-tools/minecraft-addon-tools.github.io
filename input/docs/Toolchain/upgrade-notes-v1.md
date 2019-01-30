@@ -24,11 +24,40 @@ The toolchain was extended and changed to fix these issues.
 * The toolchain now supports a rudimentary plugin architecture.
 * Three plugins have been written, each with their own NPM package.
 
-| NPM Package                  | Purpose                                             |
-| ---------------------------- | --------------------------------------------------- |
-| `minecraft-addon-typescript` | Adds support for TypeScript                         |
-| `minecraft-addon-browserify` | Adds support for multiple files                     |
-| `minecraft-addon-terser`     | Obfuscates JavaScript in .mcpack and .mcaddon files |
+| NPM Package                            | Purpose                                                                                                                 |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| `minecraft-addon-toolchain-typescript` | Adds support for TypeScript                                                                                             |
+| `minecraft-addon-toolchain-browserify` | Adds support for multiple files                                                                                         |
+| `minecraft-addon-toolchain-terser`     | Obfuscates JavaScript in .mcpack and .mcaddon files                                                                     |
+| `minecraft-addon-toolchain-webpack`    | An alternative to browserify for those more familiar with webpack, by [Destruc7i0n](https://twitter.com/TheDestruc7i0n) |
+
+# Beginning the upgrade
+A few directories changed names to better reflect the idea that an addon is made up of one or more packs. Because of this, it does not make sense to have the scripts as a top-level directory as it no longer reflects the pack it belongs to. Instead, scripts belong inside of their respective behaviour pack.
+
+So to begin upgrading your project, rename the `./src` directory to `./packs`.
+
+Next, inside of `./packs`, move the `./packs/script` directory to be underneath your behaviour pack.
+
+you should have a directory structure that looks like this:
+* packs
+  * resources
+    * `manifest.json`
+    * `pack_icon.png`
+  * behaviors
+    * scripts
+      * `manifest.json`
+      * `pack_icon.png`
+      * client
+        * `client.js`
+      * server
+        * `server.js`
+
+You may have additional files and directories as needed.
+
+If you do not like the name for resources and behaviours, you may now rename them. They will be placed in the
+correct directory when installing by examining the `manifest.json` file to determine if it is a behaviour or resource pack.
+
+The next steps depend on whether you are using JavaScript or TypeScript.
 
 # Updating a pure JavaScript add-on
 To upgrade a JavaScript project from `minecraft-scripting-toolchain` to `minecraft-addon-toolchain`, version 1.0 perform the following steps.
@@ -82,7 +111,7 @@ module.exports = builder.configureEverythingForMe();
 ```
 
 # Plugins
-If you need to extend the toolchain beyond what it provides by default (for example, to use webpack instead of browserify), you should implement a plugin.
+If you need to extend the toolchain beyond what it provides by default (for this example, we'll use webpack. as mentioned above, there is now a dedicated webpack npm package you can bring in), you should implement a plugin.
 
 Provided here is the description of a plugin
 ```TypeScript
