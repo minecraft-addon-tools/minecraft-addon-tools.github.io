@@ -52,6 +52,13 @@ body {
         .table > thead > tr.active > th {
             color: @color-secondary-1-2;
         }
+
+        @media (max-width: 1024px) {
+            img {
+                width: 100%;
+            }
+        }
+
     }
 
     .content-header {
@@ -78,7 +85,9 @@ body {
 
         .top-banner {
             background-color: @color-primary-0;
-            background-image: url("/assets/grass.png");
+            background-image: url("/assets/grass_side.png"), url("/assets/grass.png");
+            background-repeat: repeat-x, repeat;
+            background-position: left bottom, left top;
             background-size: 64px 64px;
             image-rendering: pixelated;
         }
