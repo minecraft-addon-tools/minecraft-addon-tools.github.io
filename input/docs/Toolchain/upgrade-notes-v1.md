@@ -44,9 +44,9 @@ you should have a directory structure that looks like this:
     * `manifest.json`
     * `pack_icon.png`
   * behaviors
+    * `manifest.json`
+    * `pack_icon.png`
     * scripts
-      * `manifest.json`
-      * `pack_icon.png`
       * client
         * `client.js`
       * server
