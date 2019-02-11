@@ -1,6 +1,6 @@
 Title: About This Project
 ---
-Our GitHub organization, [bedrock-addon-tools](https://github.com/bedrock-addon-tools) was built and designed in order to encourage the growth of the Minecraft Bedrock Scripting community.
+Our GitHub organization, [bedrock-addon-tools](https://github.com/minecraft-addon-tools) was built and designed in order to encourage the growth of the Minecraft Bedrock Scripting community.
 
 Our goal is to provide the tools that make bedrock scripting:
 * Easy
