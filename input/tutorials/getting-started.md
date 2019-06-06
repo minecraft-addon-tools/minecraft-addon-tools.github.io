@@ -14,12 +14,16 @@ game would be used for.
 On the 24th of October, the scripting documentation was released to the public for review, and the scripting API made available to a small focus 
 group to test it out (versions 1.8.0.50 and 1.8.0.51), then on the 5th of December, the API was given to the public beta community.
 
-It is now possible for anybody to participate in the beta and write your own scripts for minecraft, and this tutorial series is here to help get 
-you started.
+It is now possible for anybody to participate in the beta and write your own scripts for minecraft, and this tutorial series is here to help get you started.
+
+This tutorial has been updated for Minecraft 1.12.0.9 (beta)
 
 Where to go for help?
 ===
 There is a community dedicated to Bedrock Add-on development in Discord: https://discord.gg/46JUdQb
+
+The official Minecraft Scripting documentation is available here: https://minecraft.gamepedia.com/Bedrock_Edition_beta_scripting_documentation
+
 
 Pre-requisites
 ===
@@ -29,7 +33,7 @@ provide additional tools to make it easier to make it easier and faster to make 
 The bare minimum you will need are the Mojang recommended requirements:
 
 | Software    | Minimum                                                                                                        | Recommended                                                                                                                                                                                                     |
-|-------------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Code Editor | [Visual Studio Code](https://code.visualstudio.com/) or any plain-text editor                                  | [Visual Studio Community 2017](https://visualstudio.microsoft.com/vs/) with the following components installed: 'JavaScript diagnostics', 'JavaScript and TypeScript language support', 'Just-In-Time debugger' |
 | Debugger    | N/A                                                                                                            | Visual Studio Community 2017                                                                                                                                                                                    |
 | Minecraft   | [Minecraft on your Windows 10 device](https://www.microsoft.com/en-us/p/minecraft-for-windows-10/9nblggh2jhxj) | [Minecraft on your Windows 10 device](https://www.microsoft.com/en-us/p/minecraft-for-windows-10/9nblggh2jhxj)                                                                                                  |
@@ -39,16 +43,17 @@ The bare minimum you will need are the Mojang recommended requirements:
 To use the additional tools we provide, you will need some additional dependencies
 
 | Software | Minimum | Recommended                  |
-|----------|---------|------------------------------|
+| -------- | ------- | ---------------------------- |
 | Node JS  | 10.14.2 | The most recent 10.x release |
 
 It's highly recommended that when you install Node JS, you leave the option "Add to PATH" selected.
 
-As of the time of writing, the scripting API is in public Beta. That means that you will need to follow the Mojang guide to get signed up for 
+As of the time of writing, the scripting API is being actively developed and extended. This tutorial and the ones that follow will focus on the Minecraft Beta in order to make use of new features as they arrive and to get important bug fixes. That means that you will need to follow the Mojang guide to get signed up for 
 the public beta. 
 
 [https://minecraft.net/en-us/article/how-get-minecraft-betas](https://minecraft.net/en-us/article/how-get-minecraft-betas)
 
+A subset of this functionality is available in the release build, but the tutorial code may not run without some changes.
 
 Creating your first Add-on
 ===
@@ -79,14 +84,15 @@ this information will be used to both structure the add-on directories and creat
 ```powershell
 yo minecraft-addon
 ```
-| Prompt                                                                | Description                                                                                                   | Answer                                      |
-|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|---------------------------------------------|
-| `What will be the name of your addon?`                                | This will be the name displayed in Minecraft when players select your add-on                                  | `Getting Started`                           |
-| `What will your addon do or provide?`                                 | This will be the description displayed in Minecraft when the player selects your add-on                       | `Demonstrate a very basic Minecraft Add-on` |
+| Prompt                                                                | Description                                                                                                    | Answer                                      |
+| --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| `What will be the name of your addon?`                                | This will be the name displayed in Minecraft when players select your add-on                                   | `Getting Started`                           |
+| `What will your addon do or provide?`                                 | This will be the description displayed in Minecraft when the player selects your add-on                        | `Demonstrate a very basic Minecraft Add-on` |
 | `What namespace will you use?`                                        | The namespace helps to separate your add-on's functionality from other add-ons so they do not collide          | `gettingstarted`                            |
-| `What kind of modules will make up the addon? (Behaviors, Resources)` | This warrants a full explanation, see below                                                          | `Behaviors`                                 |
-| `Will you be adding scripts?`                                         | It's possible to create an add-on that does not use scripts, however we will be using scripts for this series. | `Yes`                                       |
-| `What language do you want to script in?`                             | This warrants a full explanation, see below                                                          | `JavaScript`                                |
+| `What kind of modules will make up the addon? (Behaviors, Resources)` | This warrants a full explanation, see below                                                                    | `Behaviors`                                 |
+| `Will you be adding scripts?`                                         | It's possible to create an add-on that does not use scripts, however we will be using scripts for this series. | `Y`                                         |
+| `What language do you want to script in?`                             | This warrants a full explanation, see below                                                                    | `JavaScript`                                |
+| `What initial scripts do you want generated?`                         | You can select between a bare-bones template, or a demonstration that shows that scripting is working          | `An Example Client/Server Event Script`     |
 
 An example of the output should look like this:
 
@@ -146,25 +152,25 @@ The tool chain provides the following features:
 
 We'll use the tool chain in a moment, but first let's look at each file and directory in the project and what it's for.
 
-| Path                         | Purpose                                                                                                                                                                                                                      |
-|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| node_modules/                | This is where `minecraft-addon-toolchain` and it's dependencies live.                                                                                                                                                    |
-| packs/                         | The files that make up your add-on will be somewhere under this directory.                                                                                                                                                    |
-| packs/behaviors/               | This is where the files that make up the behavior pack will live. This does not include scripts, they are currently stored separately                                                                                        |
-| packs/behaviors/manifest.json  | This file is used by Minecraft to identify the behavior pack for your add-on, It provides the name and description for users to see                                                                                          |
-| packs/behaviors/pack_icon.png  | This icon is used to identify your add-on. You should change this as soon as possible                                                                                                                                         |
-| packs/behaviors/scripts/client/          | This is where scripts that need to run on your computer will live.                                                                                                                                                           |
-| packs/behaviors/scripts/client/client.js | This is the example client side script. It has some basic code, but does not do anything.                                                                                                                                    |
-| packs/behaviors/scripts/server/          | Most of the game logic happens on the server, which could be your computer, a friend's computer or a dedicated server, and this is where those server-side scripts will live.                                                |
-| packs/behaviors/scripts/server/server.js | This is the example server side script. It has some basic code, but does not do anything.                                                                                                                                    |
-| gulpfile.js                  | This file is part of the `minecraft-addon-toolchain`, which is built on top of a system called `gulp`. It is highly configurable, but the version that is provided by `generator-minecraft-addon` starts off very basic. |
-| package-lock.js              | This is used by `npm`, part of Node JS to keep track of `minecraft-addon-toolchain`'s version and dependencies.                                                                                                          |
-| package.js                   | This is used by `npm`, part of Node JS to define what version of `minecraft-addon-toolchain` and the commands you can run that make development of your add-on easier.                                                    |
+| Path                                     | Purpose                                                                                                                                                                                                                  |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| node_modules/                            | This is where `minecraft-addon-toolchain` and it's dependencies live.                                                                                                                                                    |
+| packs/                                   | The files that make up your add-on will be somewhere under this directory.                                                                                                                                               |
+| packs/behaviors/                         | This is where the files that make up the behavior pack will live. This does not include scripts, they are currently stored separately                                                                                    |
+| packs/behaviors/manifest.json            | This file is used by Minecraft to identify the behavior pack for your add-on, It provides the name and description for users to see                                                                                      |
+| packs/behaviors/pack_icon.png            | This icon is used to identify your add-on. You should change this as soon as possible                                                                                                                                    |
+| packs/behaviors/scripts/client/          | This is where scripts that need to run on your computer will live.                                                                                                                                                       |
+| packs/behaviors/scripts/client/client.js | This is the example client side script. It has some basic code, but does not do anything.                                                                                                                                |
+| packs/behaviors/scripts/server/          | Most of the game logic happens on the server, which could be your computer, a friend's computer or a dedicated server, and this is where those server-side scripts will live.                                            |
+| packs/behaviors/scripts/server/server.js | This is the example server side script. It has some basic code, but does not do anything.                                                                                                                                |
+| gulpfile.js                              | This file is part of the `minecraft-addon-toolchain`, which is built on top of a system called `gulp`. It is highly configurable, but the version that is provided by `generator-minecraft-addon` starts off very basic. |
+| package-lock.js                          | This is used by `npm`, part of Node JS to keep track of `minecraft-addon-toolchain`'s version and dependencies.                                                                                                          |
+| package.js                               | This is used by `npm`, part of Node JS to define what version of `minecraft-addon-toolchain` and the commands you can run that make development of your add-on easier.                                                   |
 
 If we had created the add-on with resources, there would have been additional files and directories.
 
-| Path                        | Purpose                                                                                                                             |
-|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Path                          | Purpose                                                                                                                             |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | packs/resources/              | This is where the files that make up the resource pack will live.                                                                   |
 | packs/resources/manifest.json | This file is used by Minecraft to identify the resource pack for your add-on, It provides the name and description for users to see |
 | packs/resources/pack_icon.png | This is the same icon that is used in your behavior, and should also be changed as soon as possible                                 |
@@ -185,7 +191,7 @@ The output should look similar to the following:
 
 ![installaddon output](../assets/Tutorials/GettingStarted_InstallAddonOutput.png)
 
-Because we did not create the project with resources, it's quite normal for no packs to be found when installing resources.
+Because we did not create the project with resources, it's quite normal to see `No packs found` when installing resources.
 
 With that complete, we can now load Minecraft and test it out, here's the steps:
 1. Launch Minecraft
@@ -194,12 +200,12 @@ With that complete, we can now load Minecraft and test it out, here's the steps:
 4. Select `Create new World`
 5. On the Left-hand side of the screen, under `Add-Ons`, select `Behavior Packs`
    * You should see "Getting started" as an option. 
-6. Click on "Getting Started"
+6. Click on "Getting Started Behaviors"
 7. Select the `+` button to add it to your world.
-8. You will be prompted to disable achievements which you must accept.
+8. You may be prompted to disable achievements which you must accept.
 9. On the Left-hand side of the screen, under `Edit Settings`, select `Game`
 10. Scroll down and turn on `Use Experimental Gameplay`
-11. confirm you wish to change this setting.
+11. Confirm you wish to change this setting.
 12. Give your world a name if you wish
 13. Press the `Create` button to enter the world.
 
@@ -217,6 +223,54 @@ Hit the `Enter World` button and... you'll be in the world, but nothing exciting
 
 However, if you open the chat log (using the `T` key), you should see some text:
 ![Scripts found](../assets/Tutorials/GettingStarted_ScriptsRunning.png)
+
+Some basic concepts
+=
+Clients and Servers
+-
+Minecraft comes as two parts, the server, which is best represented as simply the world that all players inhabit, and the client, which is one player's perspective of that world.
+
+| Client is responsible for                                            | Server is responsible                             |
+| -------------------------------------------------------------------- | ------------------------------------------------- |
+|                                                                      | The logic for the game                            |
+| user interactions are mapped to intentions (walk, jump, attack, etc) | Acts upon those intentions                        |
+|                                                                      | Informing each client of changes to the world     |
+| Rendering the game world for you to see                              | Storing and updating the world                    |
+| Rendering and animating entities                                     |                                                   |
+| Playing music and audio                                              | Informing clients that a sound needs to be played |
+
+Regardless of if you are playing together with friends or on your own, your client will be connected to a server somewhere. 
+
+In the event that you are playing on your own, or you have invited friends to join you in a world you are playing entirely on your own computer, you will be using the Embedded server that comes built into your Minecraft client. 
+
+If you were connecting to Realms, another 3rd party server or running a private server independent of the client, you will be connecting to the Dedicated Server.
+
+Whether you are connecting to the embedded or the dedicated servers, it is worth recognising the division of responsibilities. The client is responsible for showing the game to the player and gathering their input. The server is responsible for acting upon that input, changing the world as appropriate, and then reporting the change back to the client.
+
+The client is in no way responsible for the state of the game, so you should not expect to be able to affect the world's state from a client script.
+
+Events
+-
+Events are the means by which the client and server communicate with one another.
+
+An event is made up of an identifier, and some data. The data can be any valid JavaScript type, but it Minecraft must be informed what the data looks like and what the default should be.
+
+### The Identifier
+The identifier is in the syntax of `namespace:id`. The namespace should be specific to your add-on, this is important to prevent unexpected cross-talk between add-ons. It cannot be `minecraft`. The Id however is free for you to describe the event in some way that makes sense to you.
+
+The complete identifier should only contain lower-case letters and underscores ( `_` ), and a single colon ( `:` ).
+
+A good event identifier would be something along the lines of `shear_madness:sheep_chiselled`. the namespace `shear_madness` indicates the name of an Add-On. It is likely (though not guaranteed) to be unique. The event `sheep_chiselled` clearly tells you that something caused a sheep to be chiselled, and so you have a pretty good idea what the handler for this event will do (somehow set the state of a sheep to chiselled)
+
+A bad example would be `tutorial:exampleevent`. The namespace `tutorial` is potentially going to be a commonly used namespace for people learning scripting, and `exampleevent` tells you, the scripter, absolutely nothing about what caused the event, or what the intended effect of the event should be.
+
+### Defining an event
+
+Events will generally be registered in the script they will be *sent* from. They do not need to be registered on the receiving side, or in unrelated scripts.
+
+
+
+
 
 Examining the code
 =
@@ -285,7 +339,7 @@ The object it returns, the system, is tied to the Minecraft client itself and pr
 Minecraft. It also provides a number of extension points that Minecraft will automatically call if you define. Two of them are pre-defined for you: 
 `initialize`, and `update`. 
 
-`initialize` is called only once when Minecraft has finished loading everything it needs to before it can start running script code. It is not recommended that you perform any real logic in the initialize method as Minecraft may not yet have finished loading the world or other parts of the game.
+`initialize` is called only once when Minecraft has finished loading everything it needs to before it can start running script code.
 
 `update` is called every game tick. A game tick is one cycle of the game logic, which happens twenty times per second.
 
